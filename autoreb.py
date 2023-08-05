@@ -11,12 +11,16 @@ import hashlib
 import platform
 import socket
 
+if __name__ == "__main__":
+    router_ip_address="miwifi.com"
+    #router_ip_address = "192.168.31.1"
+    router_ip_address = input("Router IP address [press enter for using the default '{}']: ".format(router_ip_address)) or router_ip_address
+    router_password = input("Enter router admin password: ")
 
 
-router_ip_address="miwifi.com"
-#router_ip_address = "192.168.31.1"
-router_ip_address = input("Router IP address [press enter for using the default '{}']: ".format(router_ip_address)) or router_ip_address
-# get stok
+ 
+
+
 def get_stok(router_ip_address):
     try: 
         r0 = requests.get("http://{router_ip_address}/cgi-bin/luci/web".format(router_ip_address=router_ip_address))
@@ -48,6 +52,8 @@ def get_stok(router_ip_address):
 stok = get_stok(router_ip_address) or input("You need to get the stok manually, then input the stok here: ")
 
 def reboot_router(router_ip_address, stok):
+
+
  
     reboot_url = f"http://{router_ip_address}/cgi-bin/luci/;stok={stok}/api/xqsystem/reboot"
     reboot_data = {"client": "web"}
@@ -61,13 +67,5 @@ def reboot_router(router_ip_address, stok):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
 
-if __name__ == "__main__":
-    router_ip_address="miwifi.com"
-    #router_ip_address = "192.168.31.1"
-    router_ip_address = input("Router IP address [press enter for using the default '{}']: ".format(router_ip_address)) or router_ip_address
-    router_password = input("Enter router admin password: ")
-
-
-
-    if stok:
+if stok:
         reboot_router(router_ip_address, stok)
