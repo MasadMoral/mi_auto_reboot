@@ -48,18 +48,18 @@ def get_stok(router_ip_address):
 stok = get_stok(router_ip_address) or input("You need to get the stok manually, then input the stok here: ")
 
 def reboot_router(router_ip_address, stok):
-      print("Router reboot command sent successfully.\nRebooting.. . . .. .")
-    # reboot_url = f"http://{router_ip_address}/cgi-bin/luci/;stok={stok}/api/xqsystem/reboot"
-    # reboot_data = {"client": "web"}
+ 
+    reboot_url = f"http://{router_ip_address}/cgi-bin/luci/;stok={stok}/api/xqsystem/reboot"
+    reboot_data = {"client": "web"}
 
-    # try:
-    #     response = requests.post(reboot_url, data=reboot_data)
-    #     if response.status_code == 200:
-    #         print("Router reboot command sent successfully.\nRebooting.. . . .. .")
-    #     else:
-    #         print("Failed to send reboot command.")
-    # except requests.exceptions.RequestException as e:
-    #     print(f"An error occurred: {e}")
+    try:
+        response = requests.post(reboot_url, data=reboot_data)
+        if response.status_code == 200:
+            print("Router reboot command sent successfully.\nRebooting.. . . .. .")
+        else:
+            print("Failed to send reboot command.")
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     router_ip_address="miwifi.com"
