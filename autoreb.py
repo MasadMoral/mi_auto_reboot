@@ -15,7 +15,7 @@ import socket
 
 router_ip_address="miwifi.com"
 #router_ip_address = "192.168.31.1"
-router_ip_address = "192.168.0.108"
+router_ip_address = input("Router IP address [press enter for using the default '{}']: ".format(router_ip_address)) or router_ip_address
 # get stok
 def get_stok(router_ip_address):
     try: 
