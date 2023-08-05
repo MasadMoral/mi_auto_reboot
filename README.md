@@ -1,5 +1,5 @@
 installation,
 
-Clone this ,
+git clone https://github.com/MasadMoral/mi_auto_reboot
 
-run this python3 autoreb.py
+python3 autoreb.py
